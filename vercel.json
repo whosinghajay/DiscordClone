@@ -1,7 +1,21 @@
 {
-  "version": 2,
-  "routes": [
-    { "src": "/(.*)", "dest": "api/$1" },
-    { "src": "/vercel-build", "dest": "/vercel-build.js" }
-  ]
+    "version": 2,
+    "builds": [
+        {
+            "src": "vercel-build.js",
+            "use": "@now/node"
+        }
+    ],
+    "build": {
+        "env": {
+            "DATABASE_URL":"mysql://3y7luxg3lxr5l4nxx28y:pscale_pw_1emwNKy79waFj3rjWKMZBT5ErFMithxJpkv55SWC9Rn@aws.connect.psdb.cloud/discord-clone?sslaccept=strict"
+        },
+        "scripts": {
+            "build": "prisma generate && next build"
+        }
+    },
+    "routes": [
+        { "src": "/(.*)", "dest": "vercel-build.js" }
+    ]
 }
+  
